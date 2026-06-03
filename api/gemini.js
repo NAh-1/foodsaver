@@ -1,9 +1,7 @@
-// This is your secure backend function. 
-// When deploying to Vercel, put this file in a folder named "api".
-// Make sure to add GEMINI_API_KEY in your Vercel Environment Variables.
+// api/gemini.js
 
 export default async function handler(req, res) {
-    // 1. CORS Headers (Allow your frontend to talk to this backend)
+    // CORS Headers
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -15,34 +13,52 @@ export default async function handler(req, res) {
     }
 
     if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed. Use POST.' });
+        return res.status(405).json({ error: 'Method not allowed.' });
     }
 
-    // 2. Get the API key securely from the server environment
+    // You can keep the environment variable named GEMINI_API_KEY in Vercel,
+    // but paste your provider key (e.g., OpenRouter or DeepInfra key) into it!
     const apiKey = process.env.GEMINI_API_KEY;
-
     if (!apiKey) {
         return res.status(500).json({ error: 'API key is missing on the server.' });
     }
 
-    // 3. Forward the exact request to Google
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-
     try {
-        const response = await fetch(url, {
+        // Extract the original prompt text sent by the frontend
+        const frontendPrompt = req.body.contents[0].parts[0].text;
+
+        // Route to an optimized Gemma API endpoint (OpenRouter example)
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
             },
-            body: JSON.stringify(req.body) // Pass the frontend's payload directly
+            body: JSON.stringify({
+                model: "google/gemma-2-27b-it", // Accessing the high-performance instruction-tuned Gemma model
+                messages: [
+                    { role: "user", content: frontendPrompt }
+                ],
+                response_format: { type: "json_object" } // Keeps your JSON layout perfect
+            })
         });
 
-        const data = await response.json();
+        const openRouterData = await response.json();
         
-        // 4. Send Google's response back to your frontend
-        res.status(200).json(data);
+        // Format the response back into the structure your frontend index.html expects
+        const gemmaTextResponse = openRouterData.choices[0].message.content;
+        
+        const structuredResponse = {
+            candidates: [{
+                content: {
+                    parts: [{ text: gemmaTextResponse }]
+                }
+            }]
+        };
+
+        res.status(200).json(structuredResponse);
     } catch (error) {
-        console.error("Backend Error:", error);
-        res.status(500).json({ error: 'Failed to communicate with AI server.' });
+        console.error("Gemma Backend Error:", error);
+        res.status(500).json({ error: 'Failed to communicate with Gemma AI server.' });
     }
 }
