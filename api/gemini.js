@@ -1,7 +1,5 @@
 // api/gemini.js
-
 export default async function handler(req, res) {
-    // Standard Vercel CORS Headers
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -16,51 +14,33 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed.' });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY; 
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-        return res.status(500).json({ error: 'Server API key configuration is missing.' });
+        return res.status(500).json({ error: 'API key is missing on the server.' });
     }
 
-    try {
-        // Pull the text prompt out of the format your index.html sent
-        const frontendPrompt = req.body.contents[0].parts[0].text;
+    // UPDATED: Using the stable production endpoint for gemini-2.5-flash
+   // Inside your api/gemini.js file, change the URL back to the stable line:
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
-        // Route directly to Google's Gemma 4 31B via OpenRouter
-        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    try {
+        const response = await fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                model: "google/gemma-4-26b-a4b-it:free", // Utilizing Gemma 4 31B IT
-                messages: [
-                    { role: "user", content: frontendPrompt }
-                ]
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(req.body)
         });
 
-        const openRouterData = await response.json();
+        const data = await response.json();
         
-        if (openRouterData.error) {
-            console.error("OpenRouter Error Details:", openRouterData.error);
-            return res.status(500).json({ error: openRouterData.error.message });
+        // Error trapping: If Google returns an error object, log it so you can see it in Vercel
+        if (data.error) {
+            console.error("Google API Error Details:", data.error);
+            return res.status(response.status).json(data);
         }
 
-        const gemmaTextResponse = openRouterData.choices[0].message.content;
-        
-        // Re-package the data to exactly mimic the Gemini structure your frontend expects
-        const structuredResponse = {
-            candidates: [{
-                content: {
-                    parts: [{ text: gemmaTextResponse }]
-                }
-            }]
-        };
-
-        res.status(200).json(structuredResponse);
+        res.status(200).json(data);
     } catch (error) {
-        console.error("Gemma 4 Proxy Backend Error:", error);
-        res.status(500).json({ error: 'Failed to communicate with Gemma 4 server.' });
+        console.error("Backend Proxy Error:", error);
+        res.status(500).json({ error: 'Failed to communicate with AI server.' });
     }
 }
