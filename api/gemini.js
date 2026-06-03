@@ -33,7 +33,7 @@ export default async function handler(req, res) {
                 'Authorization': `Bearer ${apiKey}`
             },
             body: JSON.stringify({
-                model: "google/gemma-4-31b-it:free", // Utilizing Gemma 4 31B IT
+                model: "google/gemma-4-26b-a4b-it:free", // Utilizing Gemma 4 31B IT
                 messages: [
                     { role: "user", content: frontendPrompt }
                 ]
