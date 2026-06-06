@@ -58,7 +58,7 @@
             border-bottom: 1px solid rgba(241, 245, 249, 1);
         }
 
-        /* Adjust padding to account for the new top banner ad */
+        /* Adjust padding to account for the top banner ad */
         .view-section { display: none; flex: 1; overflow-y: auto; padding: 130px 20px 140px 20px; }
         .view-section.active { display: block; animation: fadeIn 0.3s ease-out; }
         
@@ -89,10 +89,13 @@
         <div class="flex items-center gap-3">
             <!-- LOGO PLACEHOLDER -->
             <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-slate-200 overflow-hidden shadow-sm shrink-0">
-                <img src="https://placehold.co/150x150/10b981/ffffff?text=LOGO" alt="App Logo" class="w-full h-full object-cover">
+                <img src="WhatsApp Image 2026-06-05 at 2.58.04 PM.jpeg" alt="App Logo" class="w-full h-full object-cover">
             </div>
             <div>
-                <h1 class="text-xl font-extrabold text-slate-800 tracking-tight" id="header-title">Surplus Market</h1>
+                <div class="flex items-center gap-1.5">
+                    <h1 class="text-xl font-extrabold text-slate-800 tracking-tight" id="header-title">Surplus Market</h1>
+                    <span id="pro-badge" class="hidden bg-gradient-to-r from-amber-400 to-amber-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-wider shadow-sm animate-pulse">PRO</span>
+                </div>
                 <p class="text-[10px] font-bold text-emerald-600 flex items-center mt-0.5 uppercase tracking-wide">
                     <i class="fas fa-location-dot mr-1"></i> Al-Rayyan, Qatar
                 </p>
@@ -105,7 +108,7 @@
     </header>
 
     <!-- AD PLACEMENT 1: TOP TICKER BANNER -->
-    <div class="absolute top-[73px] w-full z-20 bg-indigo-600 text-white text-[11px] font-medium py-1.5 marquee shadow-sm">
+    <div id="top-ad-banner" class="absolute top-[73px] w-full z-20 bg-indigo-600 text-white text-[11px] font-medium py-1.5 marquee shadow-sm">
         <span><strong class="bg-yellow-400 text-indigo-900 px-1 rounded mr-2 text-[9px] uppercase">AD</strong> Download Talabat today for 50% off your first 3 grocery orders! Use code: FOODSAVER50 &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp; <strong class="bg-yellow-400 text-indigo-900 px-1 rounded mr-2 text-[9px] uppercase">AD</strong> Baladna Fresh Milk - Buy 2 Get 1 Free at all Al Meera branches this weekend!</span>
     </div>
 
@@ -152,6 +155,27 @@
         </div>
     </section>
 
+    <!-- RECIPES VIEW -->
+    <section id="view-recipes" class="view-section">
+        <div class="flex justify-between items-end mb-5 border-b border-slate-200 pb-4">
+            <div>
+                <h2 class="text-2xl font-extrabold text-slate-800 mb-1">Cookbook</h2>
+                <p class="text-sm text-slate-500 font-medium">Your saved AI zero-waste recipes.</p>
+            </div>
+            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
+                <i class="fas fa-book-open"></i>
+            </div>
+        </div>
+        <div id="recipes-list" class="space-y-3"></div>
+        <div id="recipes-empty" class="hidden text-center py-10 px-6">
+            <div class="w-20 h-20 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-dashed border-purple-200">
+                <i class="fas fa-book-open text-3xl text-purple-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-700 mb-1">No recipes saved</h3>
+            <p class="text-sm text-slate-500 mb-6">Generate an AI recipe from your fridge to save it here.</p>
+        </div>
+    </section>
+
     <!-- DONATE VIEW -->
     <section id="view-donate" class="view-section">
         <div class="bg-emerald-50 rounded-3xl p-5 mb-6 border border-emerald-100 flex items-start gap-4">
@@ -172,6 +196,61 @@
         </button>
     </section>
 
+    <!-- PREMIUM SUBSCRIPTION VIEW -->
+    <section id="view-premium" class="view-section">
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-950 rounded-3xl p-6 text-white mb-6 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl"></div>
+            <div class="absolute bottom-0 left-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-2xl"></div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 mb-4 shadow-md">
+                    <i class="fas fa-crown text-xl text-white"></i>
+                </div>
+                <h2 class="text-2xl font-black tracking-tight mb-1">Food Saver <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Pro</span></h2>
+                <p class="text-xs text-slate-300 leading-relaxed mb-6">Elevate your zero-waste journey while enjoying ultimate comfort.</p>
+                
+                <div class="border-t border-slate-800/80 pt-4 flex justify-between items-baseline mb-2">
+                    <span class="text-xs text-slate-400 font-medium">Subscription Price</span>
+                    <div class="text-right">
+                        <span class="text-3xl font-black text-white">15</span>
+                        <span class="text-xs text-slate-400 font-bold"> QAR / month</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1 mb-3">Premium Benefits</h3>
+            <div class="space-y-3">
+                <div class="bg-white rounded-2xl p-4 border border-slate-100 flex items-start gap-4 shadow-sm">
+                    <div class="w-9 h-9 bg-red-50 text-red-500 rounded-xl flex items-center justify-center text-sm shrink-0 border border-red-100"><i class="fas fa-ban"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">100% Ad-Free</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Instant removal of all banner, floating, and inline feed ads.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-4 border border-slate-100 flex items-start gap-4 shadow-sm">
+                    <div class="w-9 h-9 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-sm shrink-0 border border-purple-100"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Priority Chef AI access</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Faster AI recipes with advanced portion adjustment controls.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-4 border border-slate-100 flex items-start gap-4 shadow-sm">
+                    <div class="w-9 h-9 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-sm shrink-0 border border-emerald-100"><i class="fas fa-heart"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Support Local Charity</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">5% of subscription fee directly funds food distribution networks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="subscription-action-container">
+            <!-- Active Subscription State Dynamically Injected here -->
+        </div>
+    </section>
+
     <!-- AD PLACEMENT 2: FLOATING BOTTOM AD -->
     <div id="floating-ad" class="absolute bottom-[90px] left-4 right-4 bg-white rounded-2xl shadow-float border border-slate-200 p-3 flex items-center z-20 transition-all duration-300">
         <button onclick="document.getElementById('floating-ad').style.display='none'" class="absolute -top-2 -right-2 bg-slate-200 text-slate-500 w-5 h-5 rounded-full flex items-center justify-center text-[10px] hover:bg-slate-300"><i class="fas fa-times"></i></button>
@@ -189,17 +268,25 @@
     <!-- BOTTOM NAVIGATION -->
     <div class="absolute bottom-6 left-6 right-6 z-30">
         <nav class="bg-slate-900/95 backdrop-blur-xl rounded-[28px] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] flex justify-around items-center p-2 border border-slate-700/50">
-            <button onclick="switchView('market')" class="nav-btn relative flex flex-col items-center justify-center w-14 h-12 rounded-2xl text-emerald-400 bg-slate-800 transition-all duration-300" data-target="market">
-                <i class="fas fa-store text-lg"></i>
-                <span class="text-[9px] font-bold mt-1 opacity-100">Market</span>
+            <button onclick="switchView('market')" class="nav-btn relative flex flex-col items-center justify-center w-12 h-11 rounded-2xl text-emerald-400 bg-slate-800 transition-all duration-300" data-target="market">
+                <i class="fas fa-store text-base"></i>
+                <span class="text-[8px] font-bold mt-1 opacity-100">Market</span>
             </button>
-            <button onclick="switchView('inventory')" class="nav-btn relative flex flex-col items-center justify-center w-14 h-12 rounded-2xl text-slate-400 hover:text-white transition-all duration-300" data-target="inventory">
-                <i class="fas fa-box text-lg"></i>
-                <span class="text-[9px] font-bold mt-1 opacity-0 hidden">Fridge</span>
+            <button onclick="switchView('inventory')" class="nav-btn relative flex flex-col items-center justify-center w-12 h-11 rounded-2xl text-slate-400 hover:text-white transition-all duration-300" data-target="inventory">
+                <i class="fas fa-box text-base"></i>
+                <span class="text-[8px] font-bold mt-1 opacity-0 hidden">Fridge</span>
             </button>
-            <button onclick="switchView('donate')" class="nav-btn relative flex flex-col items-center justify-center w-14 h-12 rounded-2xl text-slate-400 hover:text-white transition-all duration-300" data-target="donate">
-                <i class="fas fa-hand-holding-heart text-lg"></i>
-                <span class="text-[9px] font-bold mt-1 opacity-0 hidden">Donate</span>
+            <button onclick="switchView('recipes')" class="nav-btn relative flex flex-col items-center justify-center w-12 h-11 rounded-2xl text-slate-400 hover:text-white transition-all duration-300" data-target="recipes">
+                <i class="fas fa-book-open text-base"></i>
+                <span class="text-[8px] font-bold mt-1 opacity-0 hidden">Cookbook</span>
+            </button>
+            <button onclick="switchView('donate')" class="nav-btn relative flex flex-col items-center justify-center w-12 h-11 rounded-2xl text-slate-400 hover:text-white transition-all duration-300" data-target="donate">
+                <i class="fas fa-hand-holding-heart text-base"></i>
+                <span class="text-[8px] font-bold mt-1 opacity-0 hidden">Donate</span>
+            </button>
+            <button onclick="switchView('premium')" class="nav-btn relative flex flex-col items-center justify-center w-12 h-11 rounded-2xl text-slate-400 hover:text-white transition-all duration-300" data-target="premium">
+                <i class="fas fa-crown text-base"></i>
+                <span class="text-[8px] font-bold mt-1 opacity-0 hidden">Premium</span>
             </button>
         </nav>
     </div>
@@ -224,7 +311,7 @@
             </div>
 
             <!-- AD PLACEMENT 3: IN-CART AD -->
-            <div class="mt-8 mb-4 bg-yellow-50 rounded-2xl border border-yellow-200 p-4 relative overflow-hidden">
+            <div id="cart-sponsored-ad" class="mt-8 mb-4 bg-yellow-50 rounded-2xl border border-yellow-200 p-4 relative overflow-hidden">
                 <div class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[9px] font-bold px-2 py-0.5 rounded-bl-lg">SPONSORED</div>
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-yellow-600 text-xl border border-yellow-100">
@@ -258,14 +345,6 @@
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION -->
-    <div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl text-sm transition-all duration-300 opacity-0 translate-y-[-20px] pointer-events-none z-[100] flex items-center min-w-[200px]">
-        <div id="toast-icon-bg" class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center mr-3 shrink-0">
-            <i id="toast-icon" class="fas fa-check text-emerald-400 text-[10px]"></i>
-        </div>
-        <span id="toast-msg" class="font-medium">Success!</span>
-    </div>
-
     <!-- AI RECIPE MODAL -->
     <div id="recipe-modal" class="fixed inset-0 bg-slate-900/60 z-[70] opacity-0 pointer-events-none transition-opacity duration-300 flex items-end sm:items-center justify-center backdrop-blur-sm">
         <div class="bg-slate-50 w-full sm:w-[90%] sm:max-w-md h-[85vh] sm:h-[80vh] sm:rounded-3xl rounded-t-3xl shadow-2xl flex flex-col transform translate-y-full transition-transform duration-300" id="recipe-modal-content">
@@ -289,6 +368,34 @@
         </div>
     </div>
 
+    <!-- SUBSCRIPTION CHECKOUT MODAL -->
+    <div id="subscription-modal" class="fixed inset-0 bg-slate-900/60 z-[70] opacity-0 pointer-events-none transition-opacity duration-300 flex items-end sm:items-center justify-center backdrop-blur-sm">
+        <div class="bg-white w-full sm:w-[90%] sm:max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col transform translate-y-full transition-transform duration-300" id="subscription-modal-content">
+            <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-white rounded-t-3xl shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-amber-50 rounded-xl flex items-center justify-center text-amber-500 border border-amber-100"><i class="fas fa-crown"></i></div>
+                    <h3 class="text-lg font-extrabold text-slate-800">Checkout Pro</h3>
+                </div>
+                <button onclick="closeSubscriptionModal()" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-200"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-6">
+                <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 mb-6 text-center">
+                    <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Total Due Today</p>
+                    <p class="text-3xl font-black text-slate-800">15.00 QAR <span class="text-xs font-normal text-slate-500">/ month</span></p>
+                </div>
+                <div class="space-y-4 mb-8">
+                    <div class="bg-white rounded-xl p-3.5 border border-slate-200 flex justify-between items-center cursor-pointer hover:border-indigo-500 transition-colors">
+                        <span class="text-xs font-bold text-slate-700 flex items-center gap-2"><i class="fab fa-apple text-lg text-slate-800"></i> Apple Pay</span>
+                        <div class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center"><div class="w-2.5 h-2.5 rounded-full bg-slate-800"></div></div>
+                    </div>
+                </div>
+                <button id="pay-subscription-btn" onclick="processSubscription()" class="w-full bg-slate-900 text-white font-black py-4 rounded-2xl shadow-lg hover:bg-slate-800 active:scale-95 transition-all flex items-center justify-center gap-2">
+                    <i class="fas fa-lock text-slate-500 text-xs"></i> Authorize & Subscribe
+                </button>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -296,6 +403,7 @@
 
     let state = {
         view: 'market',
+        isPremium: false, // Tracks the subscription state
         cart: [],
         items: [
             { id: 1, name: 'Milk (Almarai)', category: 'Dairy', expiry: '2026-06-08' },
@@ -306,7 +414,9 @@
             { id: 103, store: 'Monoprix Qatar', item: 'Dairy & Cheese Bag', oldPrice: 65.00, newPrice: 25.00, discount: 61, icon: 'fa-cheese', color: 'blue', type: 'Supermarkets' },
             { id: 104, store: 'Paul Bakery', item: 'Leftover Pastries Box', oldPrice: 80.00, newPrice: 35.00, discount: 56, icon: 'fa-croissant', color: 'amber', type: 'Bakeries' },
             { id: 105, store: 'Lulu Hypermarket', item: 'Mixed Meat Cuts (Use Today)', oldPrice: 50.00, newPrice: 20.00, discount: 60, icon: 'fa-drumstick-bite', color: 'red', type: 'Supermarkets' }
-        ]
+        ],
+        savedRecipes: [],
+        currentRecipe: null
     };
 
     function showToast(message, type = 'success') {
@@ -333,6 +443,7 @@
         }, 3000);
     }
 
+    // --- STREAMING_CHUNK: Handling navigation and subscription changes... ---
     function switchView(target) {
         state.view = target;
         document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
@@ -352,12 +463,14 @@
             setTimeout(() => activeNav.querySelector('span').classList.replace('opacity-0', 'opacity-100'), 50);
         }
 
-        const titles = { 'market': 'Surplus Market', 'inventory': 'My Fridge', 'donate': 'Donations' };
+        const titles = { 'market': 'Market', 'inventory': 'My Fridge', 'donate': 'Donations', 'recipes': 'Cookbook', 'premium': 'Upgrade To Pro' };
         document.getElementById('header-title').innerText = titles[target] || 'Food Saver';
 
         if(target === 'inventory') renderInventory();
         if(target === 'donate') renderDonateList();
         if(target === 'market') renderMarket();
+        if(target === 'recipes') renderRecipes();
+        if(target === 'premium') renderPremiumView();
     }
 
     // --- MARKETPLACE & ADS LOGIC ---
@@ -367,10 +480,10 @@
 
         state.marketItems.forEach((item, index) => {
             
-            // AD PLACEMENT 4: INLINE NATIVE ADS in the feed
-            if (index === 2) {
+            // AD PLACEMENT 4: INLINE NATIVE ADS in the feed (Only if not premium)
+            if (index === 2 && !state.isPremium) {
                 list.insertAdjacentHTML('beforeend', `
-                    <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-[24px] p-4 border border-orange-100 shadow-sm my-3 flex items-center relative overflow-hidden cursor-pointer hover:shadow-md transition">
+                    <div class="ad-element bg-gradient-to-r from-red-50 to-orange-50 rounded-[24px] p-4 border border-orange-100 shadow-sm my-3 flex items-center relative overflow-hidden cursor-pointer hover:shadow-md transition">
                         <div class="absolute right-0 top-0 bottom-0 opacity-10">
                             <i class="fas fa-burger text-8xl -mr-4 mt-2 text-orange-900"></i>
                         </div>
@@ -435,10 +548,9 @@
         const item = state.marketItems.find(i => i.id === id);
         if(!item) return;
 
-        // Give it a unique cart ID just in case
         state.cart.push({ ...item, cartId: Date.now() });
         updateCartBadge();
-        renderMarket(); // Update button to "Added"
+        renderMarket();
         showToast("Item added to cart!");
     }
 
@@ -458,9 +570,10 @@
         state.cart = state.cart.filter(c => c.cartId !== cartId);
         updateCartBadge();
         renderCart();
-        renderMarket(); // Update buttons back to "Add"
+        renderMarket();
     }
 
+    // --- STREAMING_CHUNK: Processing cart rendering and checkouts... ---
     function renderCart() {
         const container = document.getElementById('cart-items-container');
         const count = document.getElementById('cart-header-count');
@@ -469,6 +582,14 @@
         const checkoutBtn = document.getElementById('checkout-btn');
 
         count.innerText = `${state.cart.length} item${state.cart.length !== 1 ? 's' : ''}`;
+
+        // Dynamic cart ad toggling based on subscription
+        const cartAd = document.getElementById('cart-sponsored-ad');
+        if (state.isPremium) {
+            cartAd.classList.add('hidden');
+        } else {
+            cartAd.classList.remove('hidden');
+        }
 
         if (state.cart.length === 0) {
             container.innerHTML = `
@@ -523,7 +644,6 @@
     function checkoutCart() {
         if(state.cart.length === 0) return;
 
-        // Process Checkout: Move cart items to Fridge/Inventory
         state.cart.forEach(item => {
             let category = 'Pantry';
             if(item.icon === 'fa-cheese') category = 'Dairy';
@@ -531,7 +651,7 @@
             if(item.icon === 'fa-drumstick-bite') category = 'Meat';
 
             let expDate = new Date(currentDate);
-            expDate.setDate(expDate.getDate() + 2); // Assume 2 days expiry for surplus
+            expDate.setDate(expDate.getDate() + 2);
 
             state.items.push({
                 id: Date.now() + Math.random(),
@@ -540,28 +660,20 @@
                 expiry: expDate.toISOString().split('T')[0]
             });
             
-            // Remove purchased items from market feed entirely
             state.marketItems = state.marketItems.filter(mi => mi.id !== item.id);
         });
 
-        // Clear cart
         state.cart = [];
         updateCartBadge();
-        toggleCart(); // Close modal
-        renderMarket(); // Refresh market
+        toggleCart();
+        renderMarket();
         
         showToast("Payment Successful! Items added to Fridge.");
         
-        // Optional: switch to inventory to show the user their items
         setTimeout(() => switchView('inventory'), 500);
     }
 
     // --- INVENTORY LOGIC ---
-    function getCategoryIcon(cat) {
-        const icons = { 'Dairy': 'fa-cheese', 'Vegetables': 'fa-carrot', 'Meat': 'fa-drumstick-bite', 'Pantry': 'fa-jar' };
-        return icons[cat] || 'fa-box';
-    }
-
     function calculateStatus(expiryStr) {
         const expDate = new Date(expiryStr);
         const diffTime = expDate - currentDate;
@@ -617,6 +729,7 @@
         showToast("Awesome! You avoided food waste.");
     }
 
+    // --- STREAMING_CHUNK: Setup Donation List render... ---
     function renderDonateList() {
         const list = document.getElementById('donate-items-list');
         list.innerHTML = '';
@@ -651,7 +764,7 @@
         showToast("Pickup scheduled via Charity!");
     }
 
-    // --- STREAMING_CHUNK: Integrating the Server Proxy AI Recipe call logic ---
+    // --- STREAMING_CHUNK: Connecting AI Recipe and Save features... ---
     // --- AI RECIPE GENERATOR ---
     async function generateRecipe() {
         if (state.items.length === 0) {
@@ -663,11 +776,9 @@
         const modalContent = document.getElementById('recipe-modal-content');
         const recipeContainer = document.getElementById('recipe-content');
 
-        // Open Modal
         modal.classList.remove('opacity-0', 'pointer-events-none');
         modalContent.classList.remove('translate-y-full');
 
-        // Show Loading State
         recipeContainer.innerHTML = `
             <div class="flex flex-col items-center justify-center h-full text-center px-4 py-10">
                 <div class="relative w-20 h-20 mb-6">
@@ -705,9 +816,7 @@
                 }
             };
 
-            const apiUrl = `/api/gemini`;
-
-            const response = await fetch(apiUrl, {
+            const response = await fetch('/api/gemini', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -718,41 +827,10 @@
             if (result.candidates && result.candidates[0].content.parts[0].text) {
                 const recipeText = result.candidates[0].content.parts[0].text;
                 const recipe = JSON.parse(recipeText);
+                recipe.id = Date.now();
+                state.currentRecipe = recipe;
                 
-                recipeContainer.innerHTML = `
-                    <div class="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100 mb-6 relative overflow-hidden">
-                        <div class="absolute -top-10 -right-10 text-slate-50 opacity-50 pointer-events-none">
-                            <i class="fas fa-hat-chef text-[120px]"></i>
-                        </div>
-                        
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1"><i class="fas fa-clock"></i> ${recipe.prepTime}</span>
-                            <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1"><i class="fas fa-leaf"></i> Zero Waste</span>
-                        </div>
-
-                        <h3 class="text-2xl font-extrabold text-slate-800 mb-2 leading-tight relative z-10">${recipe.recipeName}</h3>
-                        <p class="text-sm text-slate-500 italic mb-6 relative z-10 border-l-2 border-purple-200 pl-3 py-1">${recipe.description}</p>
-                        
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2"><i class="fas fa-shopping-basket text-purple-400"></i> Ingredients Needed</h4>
-                        <ul class="space-y-3 mb-8 bg-slate-50 rounded-2xl p-4 border border-slate-100">
-                            ${recipe.ingredients.map(ing => `
-                                <li class="flex items-start text-sm text-slate-700">
-                                    <div class="mt-0.5 mr-3 text-purple-400"><i class="far fa-check-circle"></i></div> 
-                                    <span class="font-medium">${ing}</span>
-                                </li>`).join('')}
-                        </ul>
-
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2"><i class="fas fa-list-ol text-indigo-400"></i> Step-by-Step Instructions</h4>
-                        <div class="space-y-5">
-                            ${recipe.instructions.map((inst, idx) => `
-                                <div class="flex gap-4 items-start">
-                                    <div class="w-7 h-7 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs font-extrabold shrink-0 border border-indigo-100">${idx + 1}</div>
-                                    <p class="text-sm text-slate-700 leading-relaxed pt-1">${inst}</p>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
+                renderRecipeContent(recipe, false);
             } else {
                 throw new Error("Invalid response format");
             }
@@ -774,11 +852,224 @@
     function closeRecipeModal() {
         const modal = document.getElementById('recipe-modal');
         const modalContent = document.getElementById('recipe-modal-content');
-        
         modalContent.classList.add('translate-y-full');
         setTimeout(() => {
             modal.classList.add('opacity-0', 'pointer-events-none');
         }, 300);
+    }
+
+    function renderRecipeContent(recipe, isSaved) {
+        const recipeContainer = document.getElementById('recipe-content');
+        
+        const saveBtnHtml = isSaved 
+            ? `<button disabled class="w-full mt-6 bg-slate-100 text-slate-400 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 border border-slate-200"><i class="fas fa-check"></i> Recipe Saved</button>`
+            : `<button id="save-recipe-btn" onclick="saveCurrentRecipe()" class="w-full mt-6 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-bold py-3.5 rounded-xl hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 shadow-md"><i class="fas fa-bookmark"></i> Save to Cookbook</button>`;
+
+        recipeContainer.innerHTML = `
+            <div class="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100 mb-6 relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 text-slate-50 opacity-50 pointer-events-none">
+                    <i class="fas fa-hat-chef text-[120px]"></i>
+                </div>
+                
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1"><i class="fas fa-clock"></i> ${recipe.prepTime}</span>
+                    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1"><i class="fas fa-leaf"></i> Zero Waste</span>
+                </div>
+
+                <h3 class="text-2xl font-extrabold text-slate-800 mb-2 leading-tight relative z-10">${recipe.recipeName}</h3>
+                <p class="text-sm text-slate-500 italic mb-6 relative z-10 border-l-2 border-purple-200 pl-3 py-1">${recipe.description}</p>
+                
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2"><i class="fas fa-shopping-basket text-purple-400"></i> Ingredients Needed</h4>
+                <ul class="space-y-3 mb-8 bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                    ${recipe.ingredients.map(ing => `
+                        <li class="flex items-start text-sm text-slate-700">
+                            <div class="mt-0.5 mr-3 text-purple-400"><i class="far fa-check-circle"></i></div> 
+                            <span class="font-medium">${ing}</span>
+                        </li>`).join('')}
+                </ul>
+
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2"><i class="fas fa-list-ol text-indigo-400"></i> Step-by-Step Instructions</h4>
+                <div class="space-y-5">
+                    ${recipe.instructions.map((inst, idx) => `
+                        <div class="flex gap-4 items-start">
+                            <div class="w-7 h-7 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs font-extrabold shrink-0 border border-indigo-100">${idx + 1}</div>
+                            <p class="text-sm text-slate-700 leading-relaxed pt-1">${inst}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                ${saveBtnHtml}
+            </div>
+        `;
+    }
+
+    function saveCurrentRecipe() {
+        if (!state.currentRecipe) return;
+        
+        if (state.savedRecipes.some(r => r.id === state.currentRecipe.id)) {
+            showToast("Recipe already saved!", "error");
+            return;
+        }
+
+        state.savedRecipes.push(state.currentRecipe);
+        showToast("Recipe saved to Cookbook!");
+        
+        const btn = document.getElementById('save-recipe-btn');
+        if (btn) {
+            btn.outerHTML = `<button disabled class="w-full mt-6 bg-slate-100 text-slate-400 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 border border-slate-200"><i class="fas fa-check"></i> Recipe Saved</button>`;
+        }
+    }
+
+    function renderRecipes() {
+        const list = document.getElementById('recipes-list');
+        const empty = document.getElementById('recipes-empty');
+
+        if (state.savedRecipes.length === 0) {
+            empty.classList.remove('hidden');
+            list.innerHTML = '';
+            return;
+        }
+
+        empty.classList.add('hidden');
+        list.innerHTML = '';
+
+        state.savedRecipes.forEach(recipe => {
+            const html = `
+                <div class="bg-white rounded-[20px] p-4 shadow-sm border border-slate-100 flex gap-4 items-center relative cursor-pointer hover:border-purple-200 hover:shadow-md transition-all group" onclick="openSavedRecipe(${recipe.id})">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl flex items-center justify-center text-indigo-500 text-2xl border border-indigo-100 shrink-0 group-hover:scale-105 transition-transform">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-bold text-slate-800 text-sm truncate">${recipe.recipeName}</h3>
+                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">${recipe.description}</p>
+                    </div>
+                    <div class="shrink-0 text-slate-300 group-hover:text-indigo-400 transition-colors">
+                        <i class="fas fa-chevron-right text-xs"></i>
+                    </div>
+                </div>
+            `;
+            list.insertAdjacentHTML('beforeend', html);
+        });
+    }
+
+    function openSavedRecipe(id) {
+        const recipe = state.savedRecipes.find(r => r.id === id);
+        if (!recipe) return;
+        
+        state.currentRecipe = recipe;
+        
+        const modal = document.getElementById('recipe-modal');
+        const modalContent = document.getElementById('recipe-modal-content');
+        
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modalContent.classList.remove('translate-y-full');
+        
+        renderRecipeContent(recipe, true);
+    }
+
+    // --- STREAMING_CHUNK: Setup Subscription and Ad Removal actions... ---
+    // --- SUBSCRIPTION SYSTEM ---
+    function renderPremiumView() {
+        const actionContainer = document.getElementById('subscription-action-container');
+        
+        if (state.isPremium) {
+            actionContainer.innerHTML = `
+                <div class="bg-emerald-50 rounded-2xl p-4 border border-emerald-100 text-center">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2 text-xl shadow-sm">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h4 class="font-extrabold text-slate-800 text-base">Subscription Active</h4>
+                    <p class="text-xs text-slate-500 mt-1">Enjoying an ad-free premium Food Saver experience.</p>
+                    <button onclick="cancelSubscription()" class="mt-4 text-xs font-bold text-red-500 hover:text-red-600 bg-red-50/50 hover:bg-red-50 px-4 py-2 rounded-xl transition-all">Cancel Subscription</button>
+                </div>
+            `;
+        } else {
+            actionContainer.innerHTML = `
+                <button onclick="openSubscriptionModal()" class="w-full bg-slate-900 text-white font-black py-4 rounded-2xl shadow-lg hover:bg-slate-800 active:scale-95 transition-all flex items-center justify-center gap-2">
+                    <i class="fas fa-crown text-amber-400"></i> Subscribe for 15 QAR / month
+                </button>
+                <p class="text-[10px] text-center text-slate-400 mt-3">Secure checkout with Apple Pay. Cancel anytime in App Store.</p>
+            `;
+        }
+    }
+
+    function openSubscriptionModal() {
+        const modal = document.getElementById('subscription-modal');
+        const content = document.getElementById('subscription-modal-content');
+        
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        content.classList.remove('translate-y-full');
+    }
+
+    function closeSubscriptionModal() {
+        const modal = document.getElementById('subscription-modal');
+        const content = document.getElementById('subscription-modal-content');
+        
+        content.classList.add('translate-y-full');
+        setTimeout(() => {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }, 300);
+    }
+
+    function processSubscription() {
+        const btn = document.getElementById('pay-subscription-btn');
+        btn.innerHTML = `<div class="loader loader-white mr-2"></div> Authorizing...`;
+        btn.disabled = true;
+
+        setTimeout(() => {
+            state.isPremium = true;
+            btn.innerHTML = `<i class="fas fa-lock text-slate-500 text-xs"></i> Authorize & Subscribe`;
+            btn.disabled = false;
+            
+            closeSubscriptionModal();
+            updatePremiumStatus();
+            renderPremiumView();
+            showToast("Welcome to Food Saver Pro! Ads Removed.");
+        }, 1500);
+    }
+
+    function cancelSubscription() {
+        state.isPremium = false;
+        updatePremiumStatus();
+        renderPremiumView();
+        showToast("Subscription Canceled.", "error");
+    }
+
+    // Controls the visibility of ad placeholders and elements depending on subscriber status
+    function updatePremiumStatus() {
+        const badge = document.getElementById('pro-badge');
+        const topBanner = document.getElementById('top-ad-banner');
+        const floatAd = document.getElementById('floating-ad');
+        
+        if (state.isPremium) {
+            badge.classList.remove('hidden');
+            topBanner.classList.add('hidden');
+            floatAd.classList.add('hidden');
+            
+            // Adjust layouts when top banner hides
+            document.querySelectorAll('.view-section').forEach(sec => {
+                sec.style.paddingTop = '90px';
+            });
+        } else {
+            badge.classList.add('hidden');
+            topBanner.classList.remove('hidden');
+            floatAd.classList.remove('hidden');
+            
+            document.querySelectorAll('.view-section').forEach(sec => {
+                sec.style.paddingTop = '130px';
+            });
+        }
+        
+        // Re-render feed to drop/restore inline native ads
+        if(state.view === 'market') {
+            renderMarket();
+        }
+    }
+
+    // Helper utilities
+    function getCategoryIcon(cat) {
+        const icons = { 'Dairy': 'fa-cheese', 'Vegetables': 'fa-carrot', 'Meat': 'fa-drumstick-bite', 'Pantry': 'fa-jar' };
+        return icons[cat] || 'fa-box';
     }
 
     // Initialize application
